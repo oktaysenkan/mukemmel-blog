@@ -11,8 +11,8 @@ const links = [
 const Menu = () => (
   <nav>
     <ul>
-      {links.map(({ href, label }) => (
-        <li>
+      {links.map(({ href, label }, i) => (
+        <li key={i}>
           <a href={href}>{label}</a>
         </li>
       ))}

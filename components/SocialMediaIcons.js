@@ -9,8 +9,8 @@ const links = [
 const SocialMediaIcons = () => (
   <nav>
     <ul>
-      {links.map(({ href, label }) => (
-        <li>
+      {links.map(({ href, label }, i) => (
+        <li key={i}>
           <a href={href}><img height='20px' src={label}></img></a>
         </li>
       ))}

@@ -20,9 +20,7 @@ const Post = ({data}) => (
     <div className="details">{data.details}</div>
     <div className="post-meta">
       <ul>
-        <li>
-          <span className="date">{data.creationDate}</span>
-        </li>
+        <li><span className="date">{data.creationDate}</span></li>
         <li>|</li>
         <li>
           <a href="">

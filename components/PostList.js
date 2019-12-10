@@ -68,7 +68,7 @@ const posts = [
 const PostList = () => (
   <Row>
       {posts.map((post, i) => {
-        return <Col md={6}>
+        return <Col key={i} md={6}>
             <Post data={post}/>
           </Col>
       })}

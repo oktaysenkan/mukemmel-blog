@@ -18,16 +18,20 @@ const Sidebar = () => (
     <div className="categories">
       <h4>Kategoriler</h4>
       <ul>
-        {categories.map(post => (
-          <a href='#'><li>{post}</li></a>
+        {categories.map((post, i) => (
+          <li key={i}>
+            <a href='#'>{post}</a>
+          </li>
         ))}
       </ul>
     </div>
     <div className="most-reads">
       <h4>En çok okunanlar</h4>
       <ul>
-        {mostReads.map(post => (
-          <a href='#'><li>{post}</li></a>
+        {mostReads.map((post, i) => (
+          <li key={i}>
+            <a href='#'>{post}</a>
+          </li>
         ))}
       </ul>
     </div>

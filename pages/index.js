@@ -31,11 +31,7 @@ const Home = ({ posts }) => (
 );
 
 Home.getInitialProps = async ({ req }) => {
-  // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  console.log(process.env['NODE_ENV']);
   const environment = process.env['NODE_ENV'];
-  console.log(environment);
-
   let BASE_URL;
   if (environment === 'production') {
     BASE_URL = "https://nextjs-blog-app.herokuapp.com"
