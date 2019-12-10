@@ -1,22 +1,53 @@
 import React from 'react'
+import { Row, Col } from 'reactstrap';
+import Post from './Post';
 
 const posts = [
-  { href: './categories/backend', label: 'Backend' },
-  { href: './categories/frontend', label: 'Frontend' },
-  { href: './categories/sektör', label: 'Sektör' },
-  { href: './categories/yazılım', label: 'Yazılım' },
-  { href: './categories/tasarım', label: 'Tasarım' },
+  { 
+    title: 'Lorem ipsum dolor sit amet',
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit urna sed leo malesuada egestas. Nulla eu dolor vitae sapien pulvinar pulvinar. Donec viverra non enim id blandit.',
+    image: 'http://via.placeholder.com/800',
+    categories: ['Frontend', 'Yazılım', 'Code'],
+    creationDate: '2019/01/01',
+    comments: 22,
+    views: 245,
+  },
+  { 
+    title: 'Lorem ipsum dolor sit amet',
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit urna sed leo malesuada egestas. Nulla eu dolor vitae sapien pulvinar pulvinar. Donec viverra non enim id blandit. Praesent vulputate ligula quis lorem interdum, in interdum mi semper. Fusce auctor lacinia magna, nec sodales leo dictum vitae. Nulla facilisi. Vivamus nulla mi, facilisis in posuere ac, lobortis sit amet nulla.',
+    image: 'http://via.placeholder.com/200',
+    categories: ['Frontend', 'Yazılım', 'Code'],
+    creationDate: '2019/01/01',
+    comments: 22,
+    views: 245,
+  },
+  { 
+    title: 'Suspendisse vitae interdum magna',
+    details: 'Etiam interdum mauris vel nulla laoreet laoreet. In venenatis euismod lorem, ac lobortis velit elementum sed. In facilisis pellentesque tincidunt. Nam a nulla sed ante vestibulum placerat at ac enim. Vestibulum nunc magna, lobortis in enim id, porta semper dui. Duis id sem ac arcu fringilla vestibulum sed blandit odio.',
+    image: 'http://via.placeholder.com/500',
+    categories: ['Frontend', 'Yazılım', 'Code'],
+    creationDate: '2019/01/01',
+    comments: 22,
+    views: 245,
+  },
+  { 
+    title: 'Lorem ipsum dolor sit amet',
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit urna sed leo malesuada egestas. Nulla eu dolor vitae sapien pulvinar pulvinar. Donec viverra non enim id blandit.',
+    image: 'http://via.placeholder.com/1400',
+    categories: ['Frontend', 'Yazılım', 'Code'],
+    creationDate: '2019/01/01',
+    comments: 22,
+    views: 245,
+  },
 ];
 
 const Content = () => (
-  <nav>
-    <ul>
-      {links.map(({ href, label }, i) => (
-        <li>
-          <a href={href}>{label}</a>
-        </li>
+  <Row>
+      {posts.map((post) => (
+        <Col md={6}>
+          <Post data={post}/>
+        </Col>
       ))}
-    </ul>
 
     <style jsx>{`
       nav {
@@ -42,7 +73,7 @@ const Content = () => (
         color: #000;
       }
     `}</style>
-  </nav>
+  </Row>
 )
 
 export default Content
