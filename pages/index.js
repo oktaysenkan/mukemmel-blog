@@ -10,6 +10,7 @@ import SocialMediaIcons from '../components/SocialMediaIcons'
 import Header from '../components/Header';
 import Menu from '../components/Menu';
 import ContentWrapper from '../components/ContentWrapper';
+import Footer from '../components/Footer';
 
 const Home = ({ posts }) => (
   <div>
@@ -26,6 +27,7 @@ const Home = ({ posts }) => (
       <Header/>
       <Menu/>
       <ContentWrapper/>
+      <Footer/>
     </Container>
   </div>
 );
