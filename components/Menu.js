@@ -1,11 +1,11 @@
 import React from 'react'
 
 const links = [
-  { href: './categories/backend', label: 'Backend' },
-  { href: './categories/frontend', label: 'Frontend' },
-  { href: './categories/sektör', label: 'Sektör' },
-  { href: './categories/yazılım', label: 'Yazılım' },
-  { href: './categories/tasarım', label: 'Tasarım' },
+  { href: './', label: 'Anasayfa' },
+  { href: './frontend', label: 'Hakkımda' },
+  { href: './page', label: 'Page' },
+  { href: './page', label: 'Page' },
+  { href: './page', label: 'Page' },
 ];
 
 const Menu = () => (

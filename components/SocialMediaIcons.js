@@ -11,7 +11,7 @@ const SocialMediaIcons = () => (
     <ul>
       {links.map(({ href, label }) => (
         <li>
-          <a href={href}><img src={label}></img></a>
+          <a href={href}><img height='20px' src={label}></img></a>
         </li>
       ))}
     </ul>

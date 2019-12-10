@@ -119,6 +119,8 @@ const Post = ({data}) => (
 
       .post-meta > ul > li {
         padding-right: 8px;
+        display: flex;
+        flex-direction: row;
       }
 
       .post-meta .highlight {

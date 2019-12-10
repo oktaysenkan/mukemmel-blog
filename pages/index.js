@@ -27,14 +27,6 @@ const Home = ({ posts }) => (
       <Menu/>
       <ContentWrapper/>
     </Container>
-
-    <style jsx>{`
-      .container {
-        max-width: 650px;
-        width: 100%;
-        margin: 0 auto;
-      }
-    `}</style>
   </div>
 );
 
