@@ -27,6 +27,7 @@ const Footer = () => (
       .links {
         display: flex;
         flex: 1;
+        align-items: flex-end;
         justify-content: flex-end;
       }
 
@@ -36,7 +37,7 @@ const Footer = () => (
       }
 
       .links li {
-        padding-left: 20px;
+        padding-left: 10px;
       }
 
       h3 {

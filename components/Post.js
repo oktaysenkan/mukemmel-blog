@@ -31,14 +31,14 @@ const Post = ({data}) => (
         <li>
           <a href="#">
             <span className="highlight">Comments </span>
-            <span>(201)</span>
+            <span>({data.comments})</span>
           </a>
         </li>
         <li>|</li>
         <li>
           <a href="#">
             <span className="highlight">Views </span>
-            <span>(265)</span>
+            <span>({data.views})</span>
           </a>
         </li>
       </ul>
