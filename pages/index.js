@@ -8,6 +8,7 @@ import { Container } from 'reactstrap';
 
 import SocialMediaIcons from '../components/SocialMediaIcons'
 import Header from '../components/Header';
+import Menu from '../components/Menu';
 
 const Home = ({ posts }) => (
   <div>
@@ -19,7 +20,9 @@ const Home = ({ posts }) => (
 
     <Container>
       <SocialMediaIcons/>
-      <Header></Header>
+      <Header/>
+      <Menu/>
+      
     </Container>
 
     <style jsx>{`
