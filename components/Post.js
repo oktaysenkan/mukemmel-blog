@@ -7,7 +7,7 @@ const Post = ({data}) => (
       {
         data.categories.map((item, i) => {
           let result = <a>{item}</a>;
-          let sign = '';
+          let sign;
 
           if (i !== data.categories.length - 1) {
             sign = <span>|</span>
@@ -18,6 +18,41 @@ const Post = ({data}) => (
     </div>
     <h3>{data.title}</h3>
     <div className="details">{data.details}</div>
+    <div className="post-meta">
+      <ul>
+        <li>
+          <span className="date">{data.creationDate}</span>
+        </li>
+        <li>|</li>
+        <li>
+          <a href="">
+            <span className="highlight">Share </span>
+          </a>
+        </li>
+        <li>|</li>
+        <li>
+          <a href="#">
+            <span className="highlight">Comments </span>
+            <span>(201)</span>
+          </a>
+        </li>
+        <li>|</li>
+        <li>
+          <a href="#">
+            <span className="highlight">Views </span>
+            <span>(265)</span>
+          </a>
+        </li>
+      </ul>
+
+      <div className="author">
+        <span>By</span>
+        <a href="">
+          <span className="highlight">{data.authorName}</span>
+        </a> 
+      </div>
+    </div>
+
 
     <style jsx>{`
       .holder {
@@ -42,9 +77,9 @@ const Post = ({data}) => (
       }
 
       .categories {
-        padding-top: 30px;
-        font-size: 10px;
-        color: rgba(0, 0, 0, 0.4);
+        padding-top: 20px;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.6);
         font-family: 'News Cycle', sans-serif;
         font-weight: bold;
         text-transform: uppercase;
@@ -61,6 +96,37 @@ const Post = ({data}) => (
         font-size: 16px;
         color: rgba(0, 0, 0, 0.9);
         font-weight: normal;
+      }
+
+      .post-meta {
+        text-transform: uppercase;
+        font-family: 'News Cycle', sans-serif;
+        font-size: 15px;
+      }
+
+      .post-meta a{
+        text-decoration: none;
+        color: #000;
+      }
+
+      .post-meta > ul {
+        display: flex;
+        list-style: none;
+        padding-inline-start: 0px;
+        margin-block-end: 0px;
+        padding-top: 16px;
+      }
+
+      .post-meta > ul > li {
+        padding-right: 8px;
+      }
+
+      .post-meta .highlight {
+        font-weight: bold;
+      }
+      
+      .author .highlight {
+        padding: 0px 4px;
       }
     `}</style>
   </div>
