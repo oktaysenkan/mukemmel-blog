@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import { Container } from 'reactstrap';
 
 import SocialMediaIcons from '../components/SocialMediaIcons'
+import Header from '../components/Header';
 
 const Home = ({ posts }) => (
   <div>
@@ -18,6 +19,7 @@ const Home = ({ posts }) => (
 
     <Container>
       <SocialMediaIcons/>
+      <Header></Header>
     </Container>
 
     <style jsx>{`

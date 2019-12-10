@@ -5,6 +5,7 @@ const links = [
   { href: 'https://www.twitter.com', label: './assets/twitter.png' },
   { href: 'https://www.instagram.com', label: './assets/instagram.png' },
 ];
+
 const SocialMediaIcons = () => (
   <nav>
     <ul>
@@ -17,24 +18,26 @@ const SocialMediaIcons = () => (
 
     <style jsx>{`
       nav {
+        margin-top: 42px;
         display: flex;
         justify-content: flex-end;
       }
+
       ul {
         display: flex;
-        align-items: flex-end;
       }
+
       nav > ul {
         padding-right: 24px;
       }
+
       li {
         display: flex;
-        padding: 6px 8px;
+        padding-left: 20px
       }
+
       a {
-        color: #067df7;
         text-decoration: none;
-        font-size: 13px;
       }
     `}</style>
   </nav>
