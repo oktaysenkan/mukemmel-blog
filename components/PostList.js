@@ -65,7 +65,7 @@ const posts = [
   },
 ];
 
-const Content = () => (
+const PostList = () => (
   <Row>
       {posts.map((post, i) => {
         return <Col md={6}>
@@ -74,34 +74,8 @@ const Content = () => (
       })}
 
     <style jsx>{`
-      nav {
-        display: flex;
-        justify-content: center;
-      }
-
-      ul {
-        display: flex;
-      }
-
-      li {
-        display: flex;
-        padding: 35px 35px
-      }
-
-      a {
-        text-decoration: none;
-        font-family: 'News Cycle', sans-serif;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 14px;
-        color: #000;
-      }
-
-      .margin-top-80 {
-        margin-top: 80px;
-      }
     `}</style>
   </Row>
 )
 
-export default Content
+export default PostList

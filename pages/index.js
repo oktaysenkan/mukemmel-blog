@@ -9,7 +9,7 @@ import { Container } from 'reactstrap';
 import SocialMediaIcons from '../components/SocialMediaIcons'
 import Header from '../components/Header';
 import Menu from '../components/Menu';
-import Content from '../components/Content';
+import ContentWrapper from '../components/ContentWrapper';
 
 const Home = ({ posts }) => (
   <div>
@@ -25,7 +25,7 @@ const Home = ({ posts }) => (
       <SocialMediaIcons/>
       <Header/>
       <Menu/>
-      <Content/>
+      <ContentWrapper/>
     </Container>
 
     <style jsx>{`
