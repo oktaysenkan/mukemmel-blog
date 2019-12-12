@@ -2,7 +2,7 @@ import UserRepository from "../../../server/repository/UserRepository";
 
 export default async (req, res) => {
   const response = await UserRepository.save({
-    name: 'Test2'
+    name: req.query.userId
   }).then(r => ({ data: {
     user: r
   }})).catch(error => ({ error: {
