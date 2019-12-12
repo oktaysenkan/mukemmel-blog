@@ -38,6 +38,10 @@ const Footer = () => (
 
       .links li {
         padding-left: 10px;
+        font-family: 'News Cycle',sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 14px;
       }
 
       h3 {

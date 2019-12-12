@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown';
 
 const Post = ({data}) => (
   <div className='holder'>
@@ -17,7 +18,9 @@ const Post = ({data}) => (
       }
     </div>
     <h3>{data.title}</h3>
-    <div className="details">{data.details}</div>
+    <div className="details">
+      <ReactMarkdown source= {data.details} />
+    </div>
     <div className="post-meta">
       <ul>
         <li><span className="date">{data.creationDate}</span></li>
@@ -131,5 +134,14 @@ const Post = ({data}) => (
     `}</style>
   </div>
 )
+
+Post.getInitialProps = ({data}) => {
+  data.details = decode(data.details);
+  return data;
+};
+
+function decode(input) {
+  return input.replace(/\\r/g, "\r").replace(/\\n/g, "\n").replace(/\\'/g, "'").replace(/\\\"/g, '"').replace(/\\&/g, "&").replace(/\\\\/g, "\\").replace(/\\t/g, "\t").replace(/\\b/g, "\b").replace(/\\f/g, "\f").replace(/\\x2F/g, "/").replace(/\\x3C/g, "<").replace(/\\x3E/g, ">")
+}
 
 export default Post
