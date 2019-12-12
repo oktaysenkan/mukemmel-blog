@@ -6,9 +6,12 @@ class UserRepository extends Repository {
 
  save = async (user) => {
     return new Promise((resolve, reject) => {
+      mongoose.connect(this.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true}).catch(error => {
+        reject(error);
+      })
       let newUser = new User(user);
       newUser.save().then(res => {
-        resolve(res)
+        resolve(res);
       }).catch(error => {
         console.log(error);
         reject(error);
