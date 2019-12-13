@@ -5,7 +5,7 @@ const Post = ({data}) => (
   <div className='holder'>
     <div className='image'></div>
     <div className='categories'>
-      {
+      {/* {
         data.categories.map((item, i) => {
           let result = <a>{item}</a>;
           let sign;
@@ -15,11 +15,11 @@ const Post = ({data}) => (
           }
           return [result, sign]
         })
-      }
+      } */}
     </div>
     <h3>{data.title}</h3>
     <div className="details">
-      <ReactMarkdown source= {data.details} />
+      <ReactMarkdown source={data.details} />
     </div>
     <div className="post-meta">
       <ul>

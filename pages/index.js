@@ -11,6 +11,7 @@ import Header from '../components/Header';
 import Menu from '../components/Menu';
 import ContentWrapper from '../components/ContentWrapper';
 import Footer from '../components/Footer';
+import Config from '../server/configs/config';
 
 const Home = ({ posts }) => (
   <div>
@@ -26,24 +27,16 @@ const Home = ({ posts }) => (
       <SocialMediaIcons/>
       <Header/>
       <Menu/>
-      <ContentWrapper/>
+      <ContentWrapper posts={posts}/>
       <Footer/>
     </Container>
   </div>
 );
 
 Home.getInitialProps = async ({ req }) => {
-  const environment = process.env['NODE_ENV'];
-  let BASE_URL;
-  if (environment === 'production') {
-    BASE_URL = "https://nextjs-blog-app.herokuapp.com"
-  } else {
-    BASE_URL = "http://localhost:3000";
-  }
-
-  const res = await fetch(`${BASE_URL}/api/posts`);
+  const res = await fetch(`${Config.BaseURL}/api/posts`);
   const json = await res.json();
-  return { posts: json.posts };
+  return { posts: json.data.posts };
 };
 
 export default Home;
