@@ -9,13 +9,15 @@ class PostRepository extends Repository {
         reject('Server connection error.');
       })
 
-      Post.find({}, (error, documents) => {
-        if (documents.length) {
-          resolve(documents);
+      Post.aggregate().lookup({ from: 'users', localField: 'author_id', foreignField: '_id', as: 'author' }).exec(
+        (error, documents) => {
+          if (documents.length) {
+            resolve(documents);
+          }
+  
+          reject('Posts not found!');
         }
-
-        reject('Posts not found!');
-      });
+      )
     })
   }
 }
