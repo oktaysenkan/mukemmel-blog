@@ -23,7 +23,7 @@ const Post = ({data}) => (
     </div>
     <div className="post-meta">
       <ul>
-        <li><span className="date">{data.creationDate}</span></li>
+        <li><span className="date">{data.creationAt.turkeyDateFormat}</span></li>
         <li>|</li>
         <li>
           <a href="">
@@ -49,7 +49,7 @@ const Post = ({data}) => (
       <div className="author">
         <span>By</span>
         <a href="">
-          <span className="highlight">{data.authorName}</span>
+          <span className="highlight">{data.author.fullName}</span>
         </a> 
       </div>
     </div>
