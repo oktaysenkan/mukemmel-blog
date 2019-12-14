@@ -18,6 +18,7 @@ const Home = ({ posts }) => (
     <Head>
       <title>Home</title>
       <link rel="icon" href="/favicon.ico" />
+      <link rel="stylesheet" href="/css/default.css" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
       <link href="https://fonts.googleapis.com/css?family=News+Cycle:400,700&display=swap" rel="stylesheet"></link>
       <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet"></link>

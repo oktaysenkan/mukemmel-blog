@@ -9,7 +9,7 @@ const links = [
 ];
 
 const Menu = () => (
-  <nav>
+  <nav className='menu'>
     <ul>
       {links.map(({ href, label }, i) => (
         <li key={i}>
@@ -17,31 +17,6 @@ const Menu = () => (
         </li>
       ))}
     </ul>
-
-    <style jsx>{`
-      nav {
-        display: flex;
-        justify-content: center;
-      }
-
-      ul {
-        display: flex;
-      }
-
-      li {
-        display: flex;
-        padding: 35px 35px
-      }
-
-      a {
-        text-decoration: none;
-        font-family: 'News Cycle', sans-serif;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 14px;
-        color: #000;
-      }
-    `}</style>
   </nav>
 )
 
