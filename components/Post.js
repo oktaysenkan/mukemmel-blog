@@ -5,17 +5,17 @@ const Post = ({data}) => (
   <div className='holder'>
     <div className='image'></div>
     <div className='categories'>
-      {/* {
+      {
         data.categories.map((item, i) => {
-          let result = <a>{item}</a>;
+          let result = <a href={'./categories/' + item.slug}>{item.name}</a>;
           let sign;
 
           if (i !== data.categories.length - 1) {
-            sign = <span>|</span>
+            sign = <span className='sign'>|</span>
           }
           return [result, sign]
         })
-      } */}
+      }
     </div>
     <h3>{data.title}</h3>
     <div className="details">
@@ -24,20 +24,20 @@ const Post = ({data}) => (
     <div className="post-meta">
       <ul>
         <li><span className="date">{data.creationAt.turkeyDateFormat}</span></li>
-        <li>|</li>
+        <li className='sign'>|</li>
         <li>
           <a href="">
             <span className="highlight">Share </span>
           </a>
         </li>
-        <li>|</li>
+        <li className='sign'>|</li>
         <li>
           <a href="#">
             <span className="highlight">Comments </span>
             <span>({data.comments})</span>
           </a>
         </li>
-        <li>|</li>
+        <li className='sign'>|</li>
         <li>
           <a href="#">
             <span className="highlight">Views </span>
@@ -86,9 +86,15 @@ const Post = ({data}) => (
         text-transform: uppercase;
       }
       
-      .categories > a,
-      .categories > span {
+      .categories a,
+      .categories span {
         padding-right: 4px;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .sign {
+        user-select: none;
       }
 
       .details {
@@ -110,7 +116,7 @@ const Post = ({data}) => (
         color: #000;
       }
 
-      .post-meta > ul {
+      .post-meta ul {
         display: flex;
         list-style: none;
         padding-inline-start: 0px;
@@ -118,7 +124,7 @@ const Post = ({data}) => (
         padding-top: 16px;
       }
 
-      .post-meta > ul > li {
+      .post-meta ul li {
         padding-right: 8px;
         display: flex;
         flex-direction: row;
