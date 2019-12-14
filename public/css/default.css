@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Heading Pro';
+  src: url('../fonts/headingpro-regular-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/headingpro-regular-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -35,7 +41,7 @@ ul {
 
 .header h1 {
   font-size: 96px;
-  font-family: 'Heading Pro Trial', sans-serif;
+  font-family: 'Heading Pro', sans-serif;
 }
 
 .header h6 {
@@ -208,7 +214,7 @@ ul {
 
 .footer h3 {
   font-size: 32px;
-  font-family: 'Heading Pro Trial', sans-serif;
+  font-family: 'Heading Pro', sans-serif;
 }
 
 .footer h6 {
