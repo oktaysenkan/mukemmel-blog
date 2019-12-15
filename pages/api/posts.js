@@ -12,6 +12,7 @@ export default async (req, res) => {
     }
     res.statusCode = 200;
   } catch (error) {
+    console.log(error.toString());
     response = {
       error: {
         message: error.toString()

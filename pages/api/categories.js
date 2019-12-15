@@ -4,7 +4,7 @@ export default async (req, res) => {
   let response;
 
   try {
-    const categories = await CategoryRepository.getAll();
+    const categories = await CategoryRepository.getAll(req);
     response = {
       data: {
         categories: categories
@@ -12,6 +12,7 @@ export default async (req, res) => {
     }
     res.statusCode = 200;
   } catch (error) {
+    console.log(error.toString());
     response = {
       error: {
         message: error

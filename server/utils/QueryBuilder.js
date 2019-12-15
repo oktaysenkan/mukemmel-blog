@@ -3,7 +3,15 @@ class QueryBuilder {
     const query = req.query;
 
     if (query.q){
-      this.q = JSON.parse(query.q);
+      let regEx = {};
+      const searchQueries = JSON.parse(query.q);
+      for (let [key, value] of Object.entries(searchQueries)) {
+        regEx[`${key}`] = {
+          $regex: value,
+          $options: 'i',
+        }
+      }
+      this.q = regEx;
     } else {
       this.q = {};
     }

@@ -4,7 +4,7 @@ export default async (req, res) => {
   let response;
 
   try {
-    const users = await UserRepository.getAll();
+    const users = await UserRepository.getAll(req);
     response = {
       data: {
         users: users
@@ -12,6 +12,7 @@ export default async (req, res) => {
     }
     res.statusCode = 200;
   } catch (error) {
+    console.log(error.toString());
     response = {
       error: {
         message: error

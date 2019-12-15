@@ -1,21 +1,30 @@
 import Repository from './Repository'
 import User from '../model/User';
+import QueryBuilder from '../utils/QueryBuilder';
 
 class UserRepository extends Repository {
-  getAll = () => {
+  getAll = (req) => {
     return new Promise((resolve, reject) => {
       
       this.connect().catch((error) => {
         reject('Server connection error.');
       })
 
-      User.find({}, (error, documents) => {
-        if (documents.length) {
-          resolve(documents);
-        }
+      const query = new QueryBuilder(req);
 
-        reject('Users not found!');
-      });
+      User
+        .find(query.q)
+        .sort(query.sort)
+        .limit(query.count)
+        .skip(query.skip)
+        .exec((error, documents) => {
+          if (error) {
+            console.log(error);
+            reject(error.toString());
+          }
+          
+          resolve(documents);
+        });
     })
   }
 
