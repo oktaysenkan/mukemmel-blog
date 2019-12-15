@@ -16,12 +16,10 @@ const Home = () => (
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
       <link href="https://fonts.googleapis.com/css?family=News+Cycle:400,700&display=swap" rel="stylesheet"></link>
       <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet"></link>
-
-      <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet"></link>
     </Head>
 
     <Container>
-    <CKEditor/>
+      <CKEditor/>
     </Container>
   </div>
 );

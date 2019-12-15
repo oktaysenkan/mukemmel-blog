@@ -1,19 +1,24 @@
 import PostRepository from "../../server/repository/PostRepository";
 
 export default async (req, res) => {
-  PostRepository.getAll().then(response => {
-    res.statusCode = 200;
-    res.json({ 
+  let response;
+
+  try {
+    const posts = await PostRepository.getAll(req);
+    response = {
       data: {
-        posts: response
+        posts: posts
       }
-    });
-  }).catch(error => {
-    res.statusCode = 404;
-    res.json({
+    }
+    res.statusCode = 200;
+  } catch (error) {
+    response = {
       error: {
-        message: error
+        message: error.toString()
       }
-    });
-  })
+    }
+    res.statusCode = 404;
+  }
+
+  res.json(response);
 };

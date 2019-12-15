@@ -1,19 +1,24 @@
 import UserRepository from "../../server/repository/UserRepository";
 
 export default async (req, res) => {
-  UserRepository.getAll().then(response => {
-    res.statusCode = 200;
-    res.json({ 
+  let response;
+
+  try {
+    const users = await UserRepository.getAll();
+    response = {
       data: {
-        users: response
+        users: users
       }
-    });
-  }).catch(error => {
-    res.statusCode = 404;
-    res.json({
+    }
+    res.statusCode = 200;
+  } catch (error) {
+    response = {
       error: {
         message: error
       }
-    });
-  })
+    }
+    res.statusCode = 404;
+  }
+
+  res.json(response);
 };

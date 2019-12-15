@@ -1,19 +1,24 @@
 import CategoryRepository from "../../server/repository/CategoryRepository";
 
 export default async (req, res) => {
-  CategoryRepository.getAll().then(response => {
-    res.statusCode = 200;
-    res.json({ 
+  let response;
+
+  try {
+    const categories = await CategoryRepository.getAll();
+    response = {
       data: {
-        categories: response
+        categories: categories
       }
-    });
-  }).catch(error => {
-    res.statusCode = 404;
-    res.json({
+    }
+    res.statusCode = 200;
+  } catch (error) {
+    response = {
       error: {
         message: error
       }
-    });
-  })
+    }
+    res.statusCode = 404;
+  }
+
+  res.json(response);
 };

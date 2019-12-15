@@ -1,15 +1,19 @@
 import Repository from './Repository'
 import Post from '../model/Post';
+import QueryBuilder from '../utils/QueryBuilder';
 
 class PostRepository extends Repository {
-  getAll = () => {
+  getAll = (req) => {
     return new Promise((resolve, reject) => {
 
       this.connect().catch((error) => {
         reject('Server connection error.');
       })
 
-      Post.aggregate()
+      const query = new QueryBuilder(req);
+
+      Post
+        .aggregate()
         .lookup({ from: 'users', localField: 'author', foreignField: '_id', as: 'author' })
         .lookup({ from: 'categories', localField: 'categories', foreignField: '_id', as: 'categories' })
         .unwind('author')
@@ -31,12 +35,15 @@ class PostRepository extends Repository {
             }
           }
         })
+        .sort(query.sort)
+        .limit(query.count)
+        .skip(query.skip)
         .exec((error, documents) => {
           if (error) {
             console.log(error);
-            reject('Posts not found!');
+            reject(error.toString());
           }
-
+          
           resolve(documents);
         });
 
