@@ -35,6 +35,7 @@ class PostRepository extends Repository {
             }
           }
         })
+        .match(query.q)
         .sort(query.sort)
         .limit(query.count)
         .skip(query.skip)
