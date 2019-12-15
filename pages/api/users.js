@@ -15,7 +15,7 @@ export default async (req, res) => {
     console.log(error.toString());
     response = {
       error: {
-        message: error
+        message: error.toString()
       }
     }
     res.statusCode = 404;
