@@ -22,6 +22,10 @@ class CategoryRepository extends Repository {
             console.log(error);
             reject(error.toString());
           }
+
+          if (!documents.length) {
+            reject('Categories not found');
+          }
           
           resolve(documents);
         });

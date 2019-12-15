@@ -43,6 +43,10 @@ class PostRepository extends Repository {
             console.log(error);
             reject(error.toString());
           }
+
+          if (!documents.length) {
+            reject('Post not found');
+          }
           
           resolve(documents);
         });

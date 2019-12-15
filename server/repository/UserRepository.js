@@ -22,6 +22,10 @@ class UserRepository extends Repository {
             console.log(error);
             reject(error.toString());
           }
+
+          if (!documents.length) {
+            reject('User not found');
+          }
           
           resolve(documents);
         });
