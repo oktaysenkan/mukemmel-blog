@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import Config from '../server/configs/config';
 
 
 const links = [
-  { href: 'https://www.facebook.com', label: './assets/facebook.png' },
-  { href: 'https://www.twitter.com', label: './assets/twitter.png' },
-  { href: 'https://www.instagram.com', label: './assets/instagram.png' },
+  { href: 'https://www.facebook.com', label: `${Config.BaseURL}/assets/facebook.png` },
+  { href: 'https://www.twitter.com', label: `${Config.BaseURL}/assets/twitter.png` },
+  { href: 'https://www.instagram.com', label: `${Config.BaseURL}/assets/instagram.png` },
 ];
 
 

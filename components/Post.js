@@ -3,6 +3,22 @@ import ReactMarkdown from 'react-markdown';
 import Config from '../server/configs/config';
 
 class Post extends Component {
+  decodeMarkup(input) {
+    return input
+      .replace(/\\r/g, "\r")
+      .replace(/\\n/g, "\n")
+      .replace(/\\'/g, "'")
+      .replace(/\\\"/g, '"')
+      .replace(/\\&/g, "&")
+      .replace(/\\\\/g, "\\")
+      .replace(/\\t/g, "\t")
+      .replace(/\\b/g, "\b")
+      .replace(/\\f/g, "\f")
+      .replace(/\\x2F/g, "/")
+      .replace(/\\x3C/g, "<")
+      .replace(/\\x3E/g, ">")
+  }
+
   render() {
     const { data } = this.props;
     return (
@@ -25,7 +41,7 @@ class Post extends Component {
         </div>
         <h3><a href={`${Config.BaseURL}/post/${data.slug}`}>{data.title}</a></h3>
         <div className="details">
-          <ReactMarkdown source={data.details} />
+          {this.decodeMarkup(data.details).substring(0,320) + '...'}
         </div>
         <div className="post-meta">
           <ul>

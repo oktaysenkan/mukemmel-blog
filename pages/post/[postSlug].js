@@ -12,9 +12,24 @@ import Config from '../../server/configs/config';
 
 
 export class BlogPost extends Component {
+  decodeMarkup(input) {
+    return input
+      .replace(/\\r/g, "\r")
+      .replace(/\\n/g, "\n")
+      .replace(/\\'/g, "'")
+      .replace(/\\\"/g, '"')
+      .replace(/\\&/g, "&")
+      .replace(/\\\\/g, "\\")
+      .replace(/\\t/g, "\t")
+      .replace(/\\b/g, "\b")
+      .replace(/\\f/g, "\f")
+      .replace(/\\x2F/g, "/")
+      .replace(/\\x3C/g, "<")
+      .replace(/\\x3E/g, ">")
+  }
+
   render() {
     const { error, post, categories, mostReads, pages } = this.props;
-    console.log("asdasdad"+error);
     
     if (error) {
       return (
@@ -25,7 +40,7 @@ export class BlogPost extends Component {
     return (
       <div>
         <Head>
-          <title>Home</title>
+          <title>{post.title}</title>
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="/css/default.css" />
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
@@ -40,7 +55,7 @@ export class BlogPost extends Component {
           <Row>
             <Col md={12} lg={10}>
               <h1>{post.title}</h1>
-              <ReactMarkdown source={post.details} />
+              <ReactMarkdown source={this.decodeMarkup(post.details)} />
             </Col>
             <Col md={12} lg={2}>
               <Sidebar categories={categories} mostReads={mostReads}/>
