@@ -9,7 +9,7 @@ class Categories extends Component {
         <ul>
         {categories.map((category, i) => (
             <li key={i}>
-              <a href='#'>{category.name}</a>
+              <a href={`./category/${category.slug}`}>{category.name}</a>
             </li>
         ))}
         </ul>

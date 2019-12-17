@@ -10,7 +10,7 @@ class Post extends Component {
         <div className='categories'>
           {
             data.categories.map((item, i) => {
-              let result = <a href={'./categories/' + item.slug}>{item.name}</a>;
+              let result = <a href={'./category/' + item.slug}>{item.name}</a>;
               let sign;
 
               if (i !== data.categories.length - 1) {

@@ -9,7 +9,7 @@ class MostReads extends Component {
         <ul>
           {mostReads.map((post, i) => (
             <li key={i}>
-              <a href='#'>{post.title}</a>
+              <a href={`./post/${post.slug}`}>{post.title}</a>
             </li>
           ))}
         </ul>

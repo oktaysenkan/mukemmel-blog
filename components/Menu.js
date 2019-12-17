@@ -16,7 +16,7 @@ class Menu extends Component {
         <ul>
           {pages.map((page, i) => (
             <li key={i}>
-              <a href={`./${page.slug}`}>{page.name}</a>
+              <a href={`./page/${page.slug}`}>{page.name}</a>
             </li>
           ))}
         </ul>
