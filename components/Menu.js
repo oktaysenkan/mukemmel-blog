@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 const links = [
   { href: './', label: 'Anasayfa' },
@@ -8,16 +8,21 @@ const links = [
   { href: './page', label: 'Page' },
 ];
 
-const Menu = () => (
-  <nav className='menu'>
-    <ul>
-      {links.map(({ href, label }, i) => (
-        <li key={i}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
-    </ul>
-  </nav>
-)
+class Menu extends Component {
+  render() {
+    const { pages } = this.props;
+    return (
+      <nav className='menu'>
+        <ul>
+          {pages.map((page, i) => (
+            <li key={i}>
+              <a href={`./${page.slug}`}>{page.name}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )
+  }
+}
 
 export default Menu
