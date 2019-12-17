@@ -6,10 +6,6 @@ class PostRepository extends Repository {
   getAll = (req) => {
     return new Promise((resolve, reject) => {
 
-      this.connect().catch((error) => {
-        reject('Server connection error.');
-      })
-
       const query = new QueryBuilder(req);
 
       Post

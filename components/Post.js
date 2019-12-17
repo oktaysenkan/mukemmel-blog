@@ -7,7 +7,9 @@ class Post extends Component {
     const { data } = this.props;
     return (
       <div className='post'>
-        <div className='image' style={{ backgroundImage: `url(${data.image})` }}></div>
+        <a href={`${Config.BaseURL}/post/${data.slug}`}>
+          <div className='image' style={{ backgroundImage: `url(${data.image})` }}></div>
+        </a>
         <div className='categories'>
           {
             data.categories.map((item, i) => {
