@@ -5,13 +5,14 @@ import PostList from './PostList';
 
 export class ContentWrapper extends Component {
   render() {
+    const { posts, categories, mostReads } = this.props;
     return (
       <Row>
       <Col md={12} lg={10}>
-        <PostList posts={this.props.posts}/>
+        <PostList posts={posts}/>
       </Col>
       <Col md={12} lg={2}>
-        <Sidebar/>
+        <Sidebar categories={categories} mostReads={mostReads}/>
       </Col>
     </Row>
     )

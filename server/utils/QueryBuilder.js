@@ -23,15 +23,23 @@ class QueryBuilder {
     }
 
     if (query.count) {
-      this.count = parseInt(query.count)
+      this.count = parseInt(query.count);
     } else {
       this.count = 10;
     }
 
     if (query.page) {
-      this.skip = parseInt((query.page - 1) * this.count)
+      this.skip = parseInt((query.page - 1) * this.count);
     } else {
       this.skip = 0;
+    }
+
+    if (query.fields) {
+      const fields = query.fields.split(',');
+      console.log(fields);
+      this.fields = fields.join(' ');
+    } else {
+      this.fields = '';
     }
   }
 }

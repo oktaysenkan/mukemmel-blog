@@ -1,29 +1,21 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const categories = [
-  "Yazılım",
-  "Sektör",
-  "Tasarım",
-];
-
-const mostReads = [
-  "Lorem ipsum dolor sit amet",
-  "Suspendisse vitae interdum magna",
-  "Lorem ipsum dolor sit amet",
-  "Suspendisse vitae interdum magna",
-];
-
-const Categories = () => (
-  <div className="categories">
-    <h4>Kategoriler</h4>
-    <ul>
-      {categories.map((post, i) => (
-        <li key={i}>
-          <a href='#'>{post}</a>
-        </li>
-      ))}
-    </ul>
-  </div>
-)
+class Categories extends Component {
+  render() {
+    const { categories } = this.props;
+    return (
+      <div className="categories">
+        <h4>Kategoriler</h4>
+        <ul>
+        {categories.map((category, i) => (
+            <li key={i}>
+              <a href='#'>{category.name}</a>
+            </li>
+        ))}
+        </ul>
+      </div>
+    )
+  }
+}
 
 export default Categories

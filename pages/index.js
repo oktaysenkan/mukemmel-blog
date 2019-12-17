@@ -13,7 +13,7 @@ import ContentWrapper from '../components/ContentWrapper';
 import Footer from '../components/Footer';
 import Config from '../server/configs/config';
 
-const Home = ({ posts }) => (
+const Home = ({ posts, categories, mostReads }) => (
   <div>
     <Head>
       <title>Home</title>
@@ -28,16 +28,23 @@ const Home = ({ posts }) => (
       <SocialMediaIcons/>
       <Header/>
       <Menu/>
-      <ContentWrapper posts={posts}/>
+      <ContentWrapper posts={posts} categories={categories} mostReads={mostReads}/>
       <Footer/>
     </Container>
   </div>
 );
 
 Home.getInitialProps = async ({ req }) => {
-  const res = await fetch(`${Config.BaseURL}/api/posts`);
-  const json = await res.json();
-  return { posts: json.data.posts };
+  const postsResponse = await fetch(`${Config.BaseURL}/api/posts`);
+  const postsJSON = await postsResponse.json();
+
+  const categoriesResponse = await fetch(`${Config.BaseURL}/api/categories`);
+  const categoriesJSON = await categoriesResponse.json();
+
+  const mostReadsResponse = await fetch(`${Config.BaseURL}/api/posts?sort=-views&count=5`);
+  const mostReadsJSON = await mostReadsResponse.json();
+
+  return { posts: postsJSON.data.posts, categories: categoriesJSON.data.categories, mostReads: mostReadsJSON.data.posts };
 };
 
 export default Home;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap';
 import Post from './Post';
-import Config from '../server/configs/config';
 
 class PostList extends Component {
   render() {

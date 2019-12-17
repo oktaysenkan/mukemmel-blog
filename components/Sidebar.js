@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Categories from './Categories';
 import MostReads from './MostReads';
 
-const Sidebar = () => (
-  <div className='sidebar'>
-    <Categories/>
-    <MostReads/>
-  </div>
-)
+class Sidebar extends Component {
+  render() {
+    const { categories, mostReads } = this.props;
+    return (
+      <div className='sidebar'>
+        <Categories categories={categories}/>
+        <MostReads mostReads={mostReads}/>
+       </div>
+    )
+  }
+}
+
 
 export default Sidebar
