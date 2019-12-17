@@ -6,8 +6,8 @@ import Link from 'next/link';
 import Error from 'next/error'
 import ReactMarkdown from 'react-markdown';
 
-import { Container, Row, Col } from 'reactstrap';
-import { SocialMediaIcons, Header, Menu, Footer, Sidebar } from '../../components';
+import { Container } from 'reactstrap';
+import { SocialMediaIcons, Header, Menu, Footer, ContentWrapper } from '../../components';
 import Config from '../../server/configs/config';
 
 
@@ -52,15 +52,9 @@ export class BlogPost extends Component {
           <SocialMediaIcons/>
           <Header/>
           <Menu pages={pages}/>
-          <Row>
-            <Col md={12} lg={10}>
-              <h1>{post.title}</h1>
-              <ReactMarkdown source={this.decodeMarkup(post.details)} />
-            </Col>
-            <Col md={12} lg={2}>
-              <Sidebar categories={categories} mostReads={mostReads}/>
-            </Col>
-          </Row>
+          <ContentWrapper categories={categories} mostReads={mostReads}>
+            <ReactMarkdown source={this.decodeMarkup(post.details)} />
+          </ContentWrapper>
           <Footer/>
         </Container>
       </div>

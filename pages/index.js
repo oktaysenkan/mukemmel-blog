@@ -6,12 +6,8 @@ import ReactMarkdown from 'react-markdown';
 
 import { Container } from 'reactstrap';
 
-import SocialMediaIcons from '../components/SocialMediaIcons'
-import Header from '../components/Header';
-import Menu from '../components/Menu';
-import ContentWrapper from '../components/ContentWrapper';
-import Footer from '../components/Footer';
 import Config from '../server/configs/config';
+import { Header, Menu, ContentWrapper, Footer, PostList, SocialMediaIcons} from '../components'
 
 const Home = ({ posts, categories, mostReads, pages }) => (
   <div>
@@ -28,7 +24,9 @@ const Home = ({ posts, categories, mostReads, pages }) => (
       <SocialMediaIcons/>
       <Header/>
       <Menu pages={pages}/>
-      <ContentWrapper posts={posts} categories={categories} mostReads={mostReads}/>
+      <ContentWrapper categories={categories} mostReads={mostReads}>
+        <PostList posts={posts}/>
+      </ContentWrapper>
       <Footer/>
     </Container>
   </div>
