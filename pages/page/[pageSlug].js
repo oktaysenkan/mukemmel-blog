@@ -11,7 +11,7 @@ import { SocialMediaIcons, Header, Menu, Footer, ContentWrapper } from '../../co
 import Config from '../../server/configs/config';
 
 
-export class BlogPost extends Component {
+export class Page extends Component {
   decodeMarkup(input) {
     return input
       .replace(/\\r/g, "\r")
@@ -29,7 +29,7 @@ export class BlogPost extends Component {
   }
 
   render() {
-    const { error, post, categories, mostReads, pages } = this.props;
+    const { error, page, categories, mostReads, pages } = this.props;
     
     if (error) {
       return (
@@ -40,7 +40,7 @@ export class BlogPost extends Component {
     return (
       <div>
         <Head>
-          <title>{post.title}</title>
+          <title>{page.name}</title>
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="/css/default.css" />
           <link rel="stylesheet" href="/css/github.css" />
@@ -54,7 +54,7 @@ export class BlogPost extends Component {
           <Header/>
           <Menu pages={pages}/>
           <ContentWrapper categories={categories} mostReads={mostReads}>
-            <ReactMarkdown className='markdown-body' source={this.decodeMarkup(post.details)} />
+            <ReactMarkdown className='markdown-body' source={this.decodeMarkup(page.content)} />
           </ContentWrapper>
           <Footer/>
         </Container>
@@ -64,8 +64,8 @@ export class BlogPost extends Component {
 }
 
 
-BlogPost.getInitialProps = async ({ req, res, query }) => {
-  const slug = query.postSlug;
+Page.getInitialProps = async ({ req, res, query }) => {
+  const slug = query.pageSlug;
 
   const pagesResponse = await fetch(`${Config.BaseURL}/api/pages`);
   const pagesJSON = await pagesResponse.json();
@@ -77,13 +77,15 @@ BlogPost.getInitialProps = async ({ req, res, query }) => {
   const mostReadsJSON = await mostReadsResponse.json();
 
   try {
-    const postResponse = await fetch(`${Config.BaseURL}/api/posts?q={"slug":"${slug}"}`);
-    const postJSON = await postResponse.json();
-    return { categories: categoriesJSON.data.categories, mostReads: mostReadsJSON.data.posts, pages: pagesJSON.data.pages, post: postJSON.data.posts[0] };
+    const pageResponse = await fetch(`${Config.BaseURL}/api/pages?q={"slug":"${slug}"}`);
+    const pageJSON = await pageResponse.json();
+    console.log(pageJSON);
+    
+    return { categories: categoriesJSON.data.categories, mostReads: mostReadsJSON.data.posts, pages: pagesJSON.data.pages, page: pageJSON.data.pages[0] };
   } catch (error) {
     console.log(error.toString());
     return { error: error };
   }
 };
 
-export default BlogPost;
+export default Page;
