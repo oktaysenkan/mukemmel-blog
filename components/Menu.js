@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Config from '../server/configs/config';
 
 const links = [
   { href: './', label: 'Anasayfa' },
@@ -16,7 +17,7 @@ class Menu extends Component {
         <ul>
           {pages.map((page, i) => (
             <li key={i}>
-              <a href={`./page/${page.slug}`}>{page.name}</a>
+              <a href={`${Config.BaseURL}/page/${page.slug}`}>{page.name}</a>
             </li>
           ))}
         </ul>

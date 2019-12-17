@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown';
+import Config from '../server/configs/config';
 
 class Post extends Component {
   render() {
@@ -10,7 +11,7 @@ class Post extends Component {
         <div className='categories'>
           {
             data.categories.map((item, i) => {
-              let result = <a href={'./category/' + item.slug}>{item.name}</a>;
+              let result = <a href={`${Config.BaseURL}/category/${item.slug}`}>{item.name}</a>;
               let sign;
 
               if (i !== data.categories.length - 1) {
@@ -20,7 +21,7 @@ class Post extends Component {
             })
           }
         </div>
-        <h3>{data.title}</h3>
+        <h3><a href={`${Config.BaseURL}/post/${data.slug}`}>{data.title}</a></h3>
         <div className="details">
           <ReactMarkdown source={data.details} />
         </div>

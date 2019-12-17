@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Config from '../server/configs/config';
 
 class Categories extends Component {
   render() {
@@ -9,7 +10,7 @@ class Categories extends Component {
         <ul>
         {categories.map((category, i) => (
             <li key={i}>
-              <a href={`./category/${category.slug}`}>{category.name}</a>
+              <a href={`${Config.BaseURL}/category/${category.slug}`}>{category.name}</a>
             </li>
         ))}
         </ul>
