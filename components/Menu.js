@@ -13,7 +13,7 @@ class Menu extends Component {
   render() {
     const { pages } = this.props;
     return (
-      <nav className='menu'>
+      <div className='menu d-none d-md-block'>
         <ul>
           {pages.map((page, i) => (
             <li key={i}>
@@ -21,7 +21,7 @@ class Menu extends Component {
             </li>
           ))}
         </ul>
-      </nav>
+      </div>
     )
   }
 }

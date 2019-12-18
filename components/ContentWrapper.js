@@ -7,7 +7,7 @@ export class ContentWrapper extends Component {
   render() {
     const { categories, mostReads } = this.props;
     return (
-      <Row>
+      <Row className='content-wrapper'>
         <Col md={12} lg={10}>
           {this.props.children}
         </Col>

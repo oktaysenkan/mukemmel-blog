@@ -1,3 +1,23 @@
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .header h1 {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  html {
+    font-size: 16px;
+  }
+
+  .header h1 {
+    font-size: 6rem;
+  }
+}
+
 @font-face {
   font-family: 'Heading Pro';
   src: url('../fonts/headingpro-regular-webfont.woff2') format('woff2'), /* Super Modern Browsers */
@@ -26,7 +46,6 @@ ul {
 
 .social-media ul {
   display: flex;
-  padding-right: 24px;
 }
 
 .social-media li {
@@ -40,35 +59,34 @@ ul {
 }
 
 .header h1 {
-  font-size: 96px;
   font-family: 'Heading Pro', sans-serif;
 }
 
 .header h6 {
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0.8em;
   text-transform: uppercase;
 }
 
 .menu {
-  display: flex;
-  justify-content: center;
 }
 
 .menu ul {
   display: flex;
+  justify-content: center;
+  padding-top: 35px;
 }
 
 .menu li {
   display: flex;
-  padding: 35px 35px
+  padding: 0px 35px;
 }
 
 .menu a {
   font-family: 'News Cycle', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #000;
 }
 
@@ -78,7 +96,7 @@ ul {
 }
 
 .sidebar h4 {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: bold;
 }
 
@@ -88,22 +106,26 @@ ul {
 
 .sidebar .categories {
   border-left: 1.5px solid rgba(0, 0, 0, 0.13);
-  padding: 6px 0px 0px 30px
+  padding: 6px 0px 0px 1rem
 }
 
 .most-reads {
   border-left: 1.5px solid rgba(0, 0, 0, 0.13);
-  padding: 6px 0px 0px 30px
+  padding: 6px 0px 0px 1rem
 }
 
 .most-reads li {
-  padding-top: 20px;
+  padding-top: 1rem;
+}
+
+.content-wrapper {
+  margin: 2rem;
 }
 
 .post {
   display: flex;
   flex-direction: column;
-  margin-bottom: 60px;
+  margin-bottom: 3rem;
 }
 
 .post .image {
@@ -116,14 +138,14 @@ ul {
 
 .post h3 {
   padding-top: 8px;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-family: 'News Cycle', sans-serif;
   font-weight: bold;
 }
 
 .post .categories {
   padding-top: 10px;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: rgba(0, 0, 0, 0.6);
   font-family: 'News Cycle', sans-serif;
   font-weight: bold;
@@ -142,9 +164,9 @@ ul {
 }
 
 .post .details {
-  padding-top: 6px;
+  padding-top: 0.5rem;
   font-family: 'Playfair Display', sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   color: rgba(0, 0, 0, 0.9);
   font-weight: normal;
 }
@@ -152,8 +174,8 @@ ul {
 .post .post-meta {
   text-transform: uppercase;
   font-family: 'News Cycle', sans-serif;
-  font-size: 15px;
-  padding-top: 8px;
+  font-size: 0.900rem;
+  padding-top: 0.75rem;
 }
 
 .post-meta a{
@@ -169,7 +191,7 @@ ul {
 }
 
 .post-meta li {
-  padding-right: 8px;
+  padding-right: 0.5rem;
   display: flex;
   flex-direction: row;
 }
@@ -183,8 +205,8 @@ ul {
 }
 
 .footer {
-  margin-top: 8px;
-  padding-top: 12px; 
+  margin-top: 0.5rem;
+  padding-top: 0.75rem; 
   display: flex;
   border-top: 1.5px solid rgba(0, 0, 0, 0.13);
 }
@@ -210,16 +232,16 @@ ul {
   font-family: 'News Cycle',sans-serif;
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .footer h3 {
-  font-size: 32px;
+  font-size: 1.4rem;
   font-family: 'Heading Pro', sans-serif;
 }
 
 .footer h6 {
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0.8em;
   text-transform: uppercase;
 }

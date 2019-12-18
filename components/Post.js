@@ -48,8 +48,9 @@ class Post extends Component {
             <li><span className="date">{data.creationAt.turkeyDateFormat}</span></li>
             <li className='sign'>|</li>
             <li>
-              <a href="">
-                <span className="highlight">Share </span>
+              <a href="#">
+                <span className="highlight">Views </span>
+                <span>({data.views})</span>
               </a>
             </li>
             <li className='sign'>|</li>
@@ -59,21 +60,15 @@ class Post extends Component {
                 <span>({data.comments})</span>
               </a>
             </li>
-            <li className='sign'>|</li>
-            <li>
-              <a href="#">
-                <span className="highlight">Views </span>
-                <span>({data.views})</span>
-              </a>
-            </li>
           </ul>
-
-          <div className="author">
-            <span>By</span>
-            <a href="">
-              <span className="highlight">{data.author.fullName}</span>
-            </a>
-          </div>
+          <ul>
+            <li>
+              <span>By&nbsp;</span>
+              <a href="">
+                <span className="highlight">{ data.author.fullName }</span>
+              </a>
+              </li>
+          </ul>
         </div>
       </div>
     )
