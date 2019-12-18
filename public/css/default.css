@@ -103,16 +103,16 @@ ul {
   padding-left: 20px
 }
 
-.logo {
+.heading {
   margin: 20px 0px;
   text-align: center;
 }
 
-.logo h1 {
+.heading h1 {
   font-family: 'Heading Pro', sans-serif;
 }
 
-.logo h6 {
+.heading h6 {
   font-size: 0.875rem;
   letter-spacing: 0.8em;
   text-transform: uppercase;

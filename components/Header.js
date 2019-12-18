@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import Logo from './Logo'
 import Navbar from './Navbar'
 import Menu from './Menu';
+import Heading from './Logo';
 
 class Header extends Component {
   render() {
     const { pages } = this.props;
     return (
       <div>
-        <div className='header'>
+        <div className='heading'>
           <Navbar pages={pages}/>
-          <Logo/>
+          <Heading/>
         </div>
         <Menu pages={pages}/>
       </div>
