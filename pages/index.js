@@ -8,6 +8,7 @@ import { Container } from 'reactstrap';
 
 import Config from '../server/configs/config';
 import { Header, Menu, ContentWrapper, Footer, PostList, SocialMediaIcons} from '../components'
+import MobileMenu from '../components/MobileMenu';
 
 const Home = ({ posts, categories, mostReads, pages }) => (
   <div>
@@ -21,9 +22,7 @@ const Home = ({ posts, categories, mostReads, pages }) => (
     </Head>
 
     <Container>
-      <SocialMediaIcons/>
-      <Header/>
-      <Menu pages={pages}/>
+      <Header pages={pages}/>
       <ContentWrapper categories={categories} mostReads={mostReads}>
         <PostList posts={posts}/>
       </ContentWrapper>

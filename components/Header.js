@@ -1,11 +1,21 @@
-import React from 'react'
-import Config from '../server/configs/config'
+import React, { Component } from 'react'
+import Logo from './Logo'
+import Navbar from './Navbar'
+import Menu from './Menu';
 
-const Header = () => (
-  <div className='header'>
-    <h1><a href={Config.BaseURL}>Developer</a></h1>
-    <h6>Learn more</h6>
-  </div>
-)
+class Header extends Component {
+  render() {
+    const { pages } = this.props;
+    return (
+      <div>
+        <div className='header'>
+          <Navbar pages={pages}/>
+          <Logo/>
+        </div>
+        <Menu pages={pages}/>
+      </div>
+    )
+  }
+}
 
 export default Header

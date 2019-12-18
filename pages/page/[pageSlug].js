@@ -50,9 +50,7 @@ export class Page extends Component {
         </Head>
 
         <Container>
-          <SocialMediaIcons/>
-          <Header/>
-          <Menu pages={pages}/>
+          <Header pages={pages}/>
           <ContentWrapper categories={categories} mostReads={mostReads}>
             <ReactMarkdown className='markdown-body' source={this.decodeMarkup(page.content)} />
           </ContentWrapper>
