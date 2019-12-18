@@ -70,16 +70,16 @@ ul {
   text-align: center;
   position: relative;
   padding-inline-start: 0px;
-  padding-block-end: 80px;
-  padding-block-start: 80px;
+  padding-block-end: 20px;
+  padding-block-start: 20px;
 }
 
 .mobile-menu nav li {
   font-weight: 300;
-  font-size: 30px;
+  font-size: 24px;
   color: #090B27;
   display: block;
-  padding: 20px;
+  padding: 16px;
 }
 
 .mobile-menu nav a {
