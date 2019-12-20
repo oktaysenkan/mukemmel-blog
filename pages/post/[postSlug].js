@@ -8,6 +8,7 @@ import Error from '../_error';
 import ReactMarkdown from 'react-markdown';
 import { Container } from 'reactstrap';
 import { Header, Footer, ContentWrapper } from '../../components';
+import FetchAll from '../../server/utils/FetchAll';
 
 class BlogPost extends Component {
   decodeMarkup(input) {
@@ -61,24 +62,12 @@ class BlogPost extends Component {
 
 
 BlogPost.getInitialProps = async ({ req, res, query }) => {
-  let error, categories, mostReads, pages, post;
+  const { categories, mostReads, pages } = await FetchAll.getAll();
   const slug = query.postSlug;
-
-  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages?fields=name,slug`);
-  const pagesJSON = await pagesResponse.json();
-
-  const categoriesResponse = await fetch(`${Config.BaseURL}/api/categories`);
-  const categoriesJSON = await categoriesResponse.json();
-
-  const mostReadsResponse = await fetch(`${Config.BaseURL}/api/posts?sort=-views&count=5`);
-  const mostReadsJSON = await mostReadsResponse.json();
+  let error, post;
 
   const postResponse = await fetch(`${Config.BaseURL}/api/posts?q={"slug":"${slug}"}`);
   const postJSON = await postResponse.json();
-
-  categories = categoriesJSON.data.categories;
-  mostReads = mostReadsJSON.data.posts;
-  pages = pagesJSON.data.pages;
 
   if (postJSON.error) {
     error = postJSON.error.message;

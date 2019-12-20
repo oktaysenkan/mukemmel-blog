@@ -8,6 +8,7 @@ import Error from '../_error';
 import ReactMarkdown from 'react-markdown';
 import { Container } from 'reactstrap';
 import { Header, Footer, ContentWrapper } from '../../components';
+import FetchAll from '../../server/utils/FetchAll';
 
 class Page extends Component {
   decodeMarkup(input) {
@@ -61,24 +62,12 @@ class Page extends Component {
 
 
 Page.getInitialProps = async ({ req, res, query }) => {
-  let error, categories, mostReads, pages, page;
+  const { categories, mostReads, pages } = await FetchAll.getAll();
   const slug = query.pageSlug;
-
-  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages?fields=name,slug`);
-  const pagesJSON = await pagesResponse.json();
-
-  const categoriesResponse = await fetch(`${Config.BaseURL}/api/categories`);
-  const categoriesJSON = await categoriesResponse.json();
-
-  const mostReadsResponse = await fetch(`${Config.BaseURL}/api/posts?sort=-views&count=5`);
-  const mostReadsJSON = await mostReadsResponse.json();
+  let error, page;
 
   const pageResponse = await fetch(`${Config.BaseURL}/api/pages?q={"slug":"${slug}"}`);
   const pageJSON = await pageResponse.json();
-
-  categories = categoriesJSON.data.categories;
-  mostReads = mostReadsJSON.data.posts;
-  pages = pagesJSON.data.pages;
 
   if (pageJSON.error) {
     error = pageJSON.error.message;
@@ -86,7 +75,7 @@ Page.getInitialProps = async ({ req, res, query }) => {
     page = pageJSON.data.pages[0];
   }
     
-  return { error:error, categories: categories, mostReads: mostReads, pages: pages, page: page };
+  return { error: error, categories: categories, mostReads: mostReads, pages: pages, page: page };
 };
 
 export default Page;

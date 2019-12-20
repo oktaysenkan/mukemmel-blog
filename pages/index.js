@@ -9,6 +9,7 @@ import { Container } from 'reactstrap';
 import Config from '../server/configs/config';
 import { Header, Menu, ContentWrapper, Footer, PostList, SocialMediaIcons} from '../components'
 import MobileMenu from '../components/MobileMenu';
+import FetchAll from '../server/utils/FetchAll';
 
 const Home = ({ posts, categories, mostReads, pages }) => (
   <div>
@@ -32,19 +33,13 @@ const Home = ({ posts, categories, mostReads, pages }) => (
 );
 
 Home.getInitialProps = async ({ req }) => {
-  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages?fields=name,slug`);
-  const pagesJSON = await pagesResponse.json();
+  const { categories, mostReads, pages } = await FetchAll.getAll();
 
   const postsResponse = await fetch(`${Config.BaseURL}/api/posts`);
   const postsJSON = await postsResponse.json();
+  const posts = postsJSON.data.posts;
 
-  const categoriesResponse = await fetch(`${Config.BaseURL}/api/categories`);
-  const categoriesJSON = await categoriesResponse.json();
-
-  const mostReadsResponse = await fetch(`${Config.BaseURL}/api/posts?sort=-views&count=5`);
-  const mostReadsJSON = await mostReadsResponse.json();
-
-  return { posts: postsJSON.data.posts, categories: categoriesJSON.data.categories, mostReads: mostReadsJSON.data.posts, pages: pagesJSON.data.pages };
+  return { posts: posts, categories: categories, mostReads: mostReads, pages: pages };
 };
 
 export default Home;
