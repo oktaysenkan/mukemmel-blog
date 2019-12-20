@@ -64,7 +64,7 @@ Page.getInitialProps = async ({ req, res, query }) => {
   let error, categories, mostReads, pages, page;
   const slug = query.pageSlug;
 
-  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages`);
+  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages?fields=name,slug`);
   const pagesJSON = await pagesResponse.json();
 
   const categoriesResponse = await fetch(`${Config.BaseURL}/api/categories`);

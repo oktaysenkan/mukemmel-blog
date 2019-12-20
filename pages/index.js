@@ -32,7 +32,7 @@ const Home = ({ posts, categories, mostReads, pages }) => (
 );
 
 Home.getInitialProps = async ({ req }) => {
-  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages`);
+  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages?fields=name,slug`);
   const pagesJSON = await pagesResponse.json();
 
   const postsResponse = await fetch(`${Config.BaseURL}/api/posts`);

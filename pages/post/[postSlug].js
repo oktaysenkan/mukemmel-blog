@@ -64,7 +64,7 @@ BlogPost.getInitialProps = async ({ req, res, query }) => {
   let error, categories, mostReads, pages, post;
   const slug = query.postSlug;
 
-  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages`);
+  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages?fields=name,slug`);
   const pagesJSON = await pagesResponse.json();
 
   const categoriesResponse = await fetch(`${Config.BaseURL}/api/categories`);
