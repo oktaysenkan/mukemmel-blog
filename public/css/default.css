@@ -156,6 +156,7 @@ ul {
   padding: 6px 0px 0px 1rem
 }
 
+
 .most-reads {
   border-left: 1.5px solid rgba(0, 0, 0, 0.13);
   padding: 6px 0px 0px 1rem
@@ -163,9 +164,6 @@ ul {
 
 .most-reads li {
   padding-top: 1rem;
-}
-
-.content-wrapper {
 }
 
 .post {

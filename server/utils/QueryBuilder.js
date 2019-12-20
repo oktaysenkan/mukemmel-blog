@@ -12,14 +12,10 @@ class QueryBuilder {
         }
       }
       this.q = regEx;
-    } else {
-      this.q = {};
     }
 
     if (query.sort){
       this.sort = query.sort;
-    } else {
-      this.sort = '_id';
     }
 
     if (query.count) {
@@ -30,16 +26,16 @@ class QueryBuilder {
 
     if (query.page) {
       this.skip = parseInt((query.page - 1) * this.count);
-    } else {
-      this.skip = 0;
     }
 
     if (query.fields) {
       const fields = query.fields.split(',');
-      console.log(fields);
+      const $aproject = {};
+      fields.map(field => {
+        $aproject[field] = 1;
+      });
+
       this.fields = fields.join(' ');
-    } else {
-      this.fields = '';
     }
   }
 }

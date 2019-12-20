@@ -4,7 +4,7 @@ import Config from '../server/configs/config'
 const Heading = () => (
   <div className='logo'>
     <h1><a href={Config.BaseURL}>Developer</a></h1>
-    <h6>Learn more</h6>
+    <h6><a href={Config.BaseURL}>Learn more</a></h6>
   </div>
 )
 

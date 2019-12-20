@@ -8,11 +8,26 @@ class UserRepository extends Repository {
 
       const query = new QueryBuilder(req);
 
-      User
-        .find(query.q)
-        .sort(query.sort)
+      let users = User.aggregate();
+
+      if (query.q) {
+        users = users.match(query.q);
+      }
+
+      if (query.sort) {
+        users = users.sort(query.sort);
+      }
+
+      if (query.skip) {
+        users = users.skip(query.skip);
+      }
+
+      if (query.fields) {
+        users = users.project(query.fields);
+      }
+      
+      users
         .limit(query.count)
-        .skip(query.skip)
         .exec((error, documents) => {
           if (error) {
             console.log(error);

@@ -8,7 +8,7 @@ class PostRepository extends Repository {
 
       const query = new QueryBuilder(req);
 
-      Post
+      let posts = Post
         .aggregate()
         .lookup({ from: 'users', localField: 'author', foreignField: '_id', as: 'author' })
         .lookup({ from: 'categories', localField: 'categories', foreignField: '_id', as: 'categories' })
@@ -30,11 +30,26 @@ class PostRepository extends Repository {
               }
             }
           }
-        })
-        .match(query.q)
-        .sort(query.sort)
+        });
+
+      if (query.q) {
+        posts = posts.match(query.q);
+      }
+
+      if (query.sort) {
+        posts = posts.sort(query.sort);
+      }
+
+      if (query.skip) {
+        posts = posts.skip(query.skip);
+      }
+
+      if (query.fields) {
+        posts = posts.project(query.fields);
+      }
+
+      posts
         .limit(query.count)
-        .skip(query.skip)
         .exec((error, documents) => {
           if (error) {
             console.log(error);
@@ -46,7 +61,7 @@ class PostRepository extends Repository {
           }
           
           resolve(documents);
-        });
+      });
 
     });
   }
