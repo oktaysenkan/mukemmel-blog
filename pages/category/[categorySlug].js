@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
 import Config from '../../server/configs/config';
 import Error from '../_error';
+import FetchAll from '../../server/utils/FetchAll'
 
 import { Container } from 'reactstrap';
 import { Header, Footer, ContentWrapper, PostList } from '../../components';
@@ -43,24 +44,12 @@ class Category extends Component {
 }
 
 Category.getInitialProps = async ({ req, res, query }) => {
-  let error, categoryPosts, categories, mostReads, pages;
+  const { categories, mostReads, pages } = await FetchAll.getAll();
   const slug = query.categorySlug;
-
-  const pagesResponse = await fetch(`${Config.BaseURL}/api/pages?fields=name,slug`);
-  const pagesJSON = await pagesResponse.json();
-
-  const categoriesResponse = await fetch(`${Config.BaseURL}/api/categories`);
-  const categoriesJSON = await categoriesResponse.json();
-
-  const mostReadsResponse = await fetch(`${Config.BaseURL}/api/posts?sort=-views&count=5`);
-  const mostReadsJSON = await mostReadsResponse.json();
+  let error, categoryPosts;
 
   const postsResponse = await fetch(`${Config.BaseURL}/api/posts?q={"categories.slug":"${slug}"}`);
   const postsJSON = await postsResponse.json();
-
-  categories = categoriesJSON.data.categories;
-  mostReads = mostReadsJSON.data.posts;
-  pages = pagesJSON.data.pages;
 
   if (postsJSON.error) {
     error = postsJSON.error.message;
