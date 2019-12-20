@@ -2,16 +2,14 @@ import React, { Component } from 'react'
 
 import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
-import Link from 'next/link';
-import Error from 'next/error'
-import ReactMarkdown from 'react-markdown';
-
-import { Container } from 'reactstrap';
-import { SocialMediaIcons, Header, Menu, Footer, ContentWrapper } from '../../components';
 import Config from '../../server/configs/config';
+import Error from '../_error';
 
+import ReactMarkdown from 'react-markdown';
+import { Container } from 'reactstrap';
+import { Header, Footer, ContentWrapper } from '../../components';
 
-export class BlogPost extends Component {
+class BlogPost extends Component {
   decodeMarkup(input) {
     return input
       .replace(/\\r/g, "\r")
@@ -33,7 +31,7 @@ export class BlogPost extends Component {
     
     if (error) {
       return (
-        <Error statusCode={404} />
+        <Error error={error} pages={pages} mostReads={mostReads} categories={categories} />
       )
     }
 
@@ -63,6 +61,7 @@ export class BlogPost extends Component {
 
 
 BlogPost.getInitialProps = async ({ req, res, query }) => {
+  let error, categories, mostReads, pages, post;
   const slug = query.postSlug;
 
   const pagesResponse = await fetch(`${Config.BaseURL}/api/pages`);
@@ -74,14 +73,20 @@ BlogPost.getInitialProps = async ({ req, res, query }) => {
   const mostReadsResponse = await fetch(`${Config.BaseURL}/api/posts?sort=-views&count=5`);
   const mostReadsJSON = await mostReadsResponse.json();
 
-  try {
-    const postResponse = await fetch(`${Config.BaseURL}/api/posts?q={"slug":"${slug}"}`);
-    const postJSON = await postResponse.json();
-    return { categories: categoriesJSON.data.categories, mostReads: mostReadsJSON.data.posts, pages: pagesJSON.data.pages, post: postJSON.data.posts[0] };
-  } catch (error) {
-    console.log(error.toString());
-    return { error: error };
+  const postResponse = await fetch(`${Config.BaseURL}/api/posts?q={"slug":"${slug}"}`);
+  const postJSON = await postResponse.json();
+
+  categories = categoriesJSON.data.categories;
+  mostReads = mostReadsJSON.data.posts;
+  pages = pagesJSON.data.pages;
+
+  if (postJSON.error) {
+    error = postJSON.error.message;
+  } else {
+    post = postJSON.data.posts[0];
   }
+
+  return { error: error, categories: categories, mostReads: mostReads, pages: pages, post: post };
 };
 
 export default BlogPost;
