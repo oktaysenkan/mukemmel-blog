@@ -5,9 +5,7 @@ import QueryBuilder from '../utils/QueryBuilder';
 class UserRepository extends Repository {
   getAll = (req) => {
     return new Promise((resolve, reject) => {
-
       const query = new QueryBuilder(req);
-
       let users = User.aggregate();
 
       if (query.q) {

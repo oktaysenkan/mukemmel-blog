@@ -5,9 +5,7 @@ import QueryBuilder from '../utils/QueryBuilder';
 class PostRepository extends Repository {
   getAll = (req) => {
     return new Promise((resolve, reject) => {
-
       const query = new QueryBuilder(req);
-
       let posts = Post
         .aggregate()
         .lookup({ from: 'users', localField: 'author', foreignField: '_id', as: 'author' })

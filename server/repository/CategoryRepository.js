@@ -5,14 +5,27 @@ import QueryBuilder from '../utils/QueryBuilder';
 class CategoryRepository extends Repository {
   getAll = (req) => {
     return new Promise((resolve, reject) => {
-
       const query = new QueryBuilder(req);
+      let categories = Category.aggregate();
 
-      Category
-        .find(query.q)
-        .sort(query.sort)
+      if (query.q) {
+        categories = categories.match(query.q);
+      }
+
+      if (query.sort) {
+        categories = categories.sort(query.sort);
+      }
+
+      if (query.skip) {
+        categories = categories.skip(query.skip);
+      }
+
+      if (query.fields) {
+        categories = categories.project(query.fields);
+      }
+
+      categories
         .limit(query.count)
-        .skip(query.skip)
         .exec((error, documents) => {
           if (error) {
             console.log(error);
