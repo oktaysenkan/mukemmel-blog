@@ -21,6 +21,7 @@ class Post extends Component {
 
   render() {
     const { data } = this.props;
+
     return (
       <div className='post'>
         <a href={`${Config.BaseURL}/post/${data.slug}`}>
@@ -57,7 +58,7 @@ class Post extends Component {
             <li>
               <a href="#">
                 <span className="highlight">Comments </span>
-                <span>({data.comments})</span>
+                <span>({data.comments.length})</span>
               </a>
             </li>
           </ul>

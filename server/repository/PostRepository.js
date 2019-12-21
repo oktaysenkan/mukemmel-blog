@@ -10,6 +10,7 @@ class PostRepository extends Repository {
         .aggregate()
         .lookup({ from: 'users', localField: 'author', foreignField: '_id', as: 'author' })
         .lookup({ from: 'categories', localField: 'categories', foreignField: '_id', as: 'categories' })
+        .lookup({ from: 'comments', localField: 'comments', foreignField: '_id', as: 'comments' })
         .unwind('author')
         .addFields({
           creationAt: {
