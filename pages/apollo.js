@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Head from 'next/head';
 import { Container } from 'reactstrap';
-import { Query, graphql } from 'react-apollo';
 import { request } from 'graphql-request'
 import Config from '../server/configs/config';
 
