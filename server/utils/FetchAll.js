@@ -1,19 +1,34 @@
-import fetch from 'isomorphic-unfetch';
 import Config from '../configs/config';
+import { request } from 'graphql-request'
 
 class FetchAll {
   static getAll = async () => {
-    const categoriesResponse = await fetch(`${Config.BaseURL}/api/categories`);
-    const mostReadsResponse = await fetch(`${Config.BaseURL}/api/posts?sort=-views&count=5&fields=title,slug`);
-    const pagesResponse = await fetch(`${Config.BaseURL}/api/pages?fields=name,slug`);
+    const categoriesQuery = `{
+      categories {
+        name
+        slug
+      }
+    }`
+    const mostReadsQuery = `{
+      posts(count: 5, orderBy: { field: "views", direction: "DESC" }) {
+        slug
+        title
+      }
+    }`
+    const pagesQuery = `{
+      pages {
+        slug
+        name
+      }
+    }`
 
-    const categoriesJSON = await categoriesResponse.json();
-    const mostReadsJSON = await mostReadsResponse.json();
-    const pagesJSON = await pagesResponse.json();
+    const categoriesResponse = await request(Config.GraphqlURL, categoriesQuery);
+    const mostReadsResponse = await request(Config.GraphqlURL, mostReadsQuery);
+    const pagesResponse = await request(Config.GraphqlURL, pagesQuery);
 
-    const categories = categoriesJSON.data.categories;
-    const mostReads = mostReadsJSON.data.posts;
-    const pages = pagesJSON.data.pages;
+    const categories = categoriesResponse.categories;
+    const mostReads = mostReadsResponse.posts;
+    const pages = pagesResponse.pages;
 
     return { categories: categories, mostReads: mostReads, pages: pages };
   }
