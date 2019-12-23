@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { request } from 'graphql-request'
-import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
 import Config from '../../server/configs/config';
 import Error from '../_error';
@@ -91,7 +90,6 @@ BlogPost.getInitialProps = async ({ req, res, query }) => {
   }`;
 
   let error, post;
-
   try {
     const postResponse = await request(Config.GraphqlURL, postsQuery);
     post = postResponse.postBySlug;

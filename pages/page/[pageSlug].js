@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-
-import fetch from 'isomorphic-unfetch';
+import { request } from 'graphql-request'
 import Head from 'next/head';
 import Config from '../../server/configs/config';
 import Error from '../_error';
@@ -64,17 +63,22 @@ class Page extends Component {
 Page.getInitialProps = async ({ req, res, query }) => {
   const { categories, mostReads, pages } = await FetchAll.getAll();
   const slug = query.pageSlug;
+  const pageQuery = `{
+    pageBySlug(slug: "${slug}") {
+      slug
+      name
+      content
+    }
+  }`;
+
   let error, page;
-
-  const pageResponse = await fetch(`${Config.BaseURL}/api/pages?q={"slug":"${slug}"}`);
-  const pageJSON = await pageResponse.json();
-
-  if (pageJSON.error) {
-    error = pageJSON.error.message;
-  } else {
-    page = pageJSON.data.pages[0];
+  try {
+    const pageResponse = await request(Config.GraphqlURL, pageQuery);
+    page = pageResponse.pageBySlug;
+  } catch (err) {
+    error = err.response.errors[0].message;
   }
-    
+
   return { error: error, categories: categories, mostReads: mostReads, pages: pages, page: page };
 };
 
