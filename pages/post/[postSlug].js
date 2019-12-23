@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { request } from 'graphql-request'
 import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
 import Config from '../../server/configs/config';
@@ -64,15 +64,39 @@ class BlogPost extends Component {
 BlogPost.getInitialProps = async ({ req, res, query }) => {
   const { categories, mostReads, pages } = await FetchAll.getAll();
   const slug = query.postSlug;
+  const postsQuery = `{
+    postBySlug(slug: "${slug}") {
+      slug
+      author {
+        fullName
+      }
+      title
+      details
+      image
+      views
+      comments {
+        _id
+        name
+        email
+        content
+        website
+        website
+      }
+      categories {
+        name
+        slug
+      }
+      creationAt
+    }
+  }`;
+
   let error, post;
 
-  const postResponse = await fetch(`${Config.BaseURL}/api/posts?q={"slug":"${slug}"}`);
-  const postJSON = await postResponse.json();
-
-  if (postJSON.error) {
-    error = postJSON.error.message;
-  } else {
-    post = postJSON.data.posts[0];
+  try {
+    const postResponse = await request(Config.GraphqlURL, postsQuery);
+    post = postResponse.postBySlug;
+  } catch (err) {
+    error = err.response.errors[0].message;
   }
 
   return { error: error, categories: categories, mostReads: mostReads, pages: pages, post: post };
