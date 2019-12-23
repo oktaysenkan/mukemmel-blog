@@ -42,11 +42,11 @@ class Post extends Component {
         </div>
         <h3><a href={`${Config.BaseURL}/post/${data.slug}`}>{data.title}</a></h3>
         <div className="details">
-          {this.decodeMarkup(data.details).substring(0,320) + '...'}
+          {this.decodeMarkup(data.details)}
         </div>
         <div className="post-meta">
           <ul>
-            <li><span className="date">{data.creationAt.turkeyDateFormat}</span></li>
+            <li><span className="date">{data.creationAt}</span></li>
             <li className='sign'>|</li>
             <li>
               <a href="#">

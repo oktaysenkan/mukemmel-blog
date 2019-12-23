@@ -8,19 +8,19 @@ class FetchAll {
         name
         slug
       }
-    }`
+    }`;
     const mostReadsQuery = `{
       posts(count: 5, orderBy: { field: "views", direction: "DESC" }) {
         slug
         title
       }
-    }`
+    }`;
     const pagesQuery = `{
       pages {
         slug
         name
       }
-    }`
+    }`;
 
     const categoriesResponse = await request(Config.GraphqlURL, categoriesQuery);
     const mostReadsResponse = await request(Config.GraphqlURL, mostReadsQuery);

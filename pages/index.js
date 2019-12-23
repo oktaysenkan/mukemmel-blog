@@ -1,14 +1,11 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
-import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
+import { request } from 'graphql-request'
 
 import { Container } from 'reactstrap';
-
 import Config from '../server/configs/config';
 import { Header, Menu, ContentWrapper, Footer, PostList, SocialMediaIcons} from '../components'
-import MobileMenu from '../components/MobileMenu';
 import FetchAll from '../server/utils/FetchAll';
 
 const Home = ({ posts, categories, mostReads, pages }) => (
@@ -34,11 +31,27 @@ const Home = ({ posts, categories, mostReads, pages }) => (
 
 Home.getInitialProps = async ({ req }) => {
   const { categories, mostReads, pages } = await FetchAll.getAll();
-
-  const postsResponse = await fetch(`${Config.BaseURL}/api/posts`);
-  const postsJSON = await postsResponse.json();
-  const posts = postsJSON.data.posts;
-
+  const postsQuery = `{
+    posts {
+      slug
+      author {
+        fullName
+      }
+      title
+      details
+      image
+      views
+      comments {
+        _id
+      }
+      categories {
+        name
+      }
+      creationAt
+    }
+  }`;
+  const postsResponse = await request(Config.GraphqlURL, postsQuery);
+  const posts = postsResponse.posts;
   return { posts: posts, categories: categories, mostReads: mostReads, pages: pages };
 };
 
