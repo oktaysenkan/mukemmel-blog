@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-
-import fetch from 'isomorphic-unfetch';
+import { request } from 'graphql-request'
 import Head from 'next/head';
 import Config from '../../server/configs/config';
 import Error from '../_error';
@@ -46,17 +45,36 @@ class Category extends Component {
 Category.getInitialProps = async ({ req, res, query }) => {
   const { categories, mostReads, pages } = await FetchAll.getAll();
   const slug = query.categorySlug;
+  const categoryPostsQuery = `{
+    postsByCategory(categorySlug: "${slug}") {
+      slug
+      author {
+        fullName
+      }
+      title
+      details
+      image
+      views
+      comments {
+        _id
+      }
+      categories {
+        name
+        slug
+      }
+      creationAt
+    }
+  }`;
+
   let error, categoryPosts;
-
-  const postsResponse = await fetch(`${Config.BaseURL}/api/posts?q={"categories.slug":"${slug}"}`);
-  const postsJSON = await postsResponse.json();
-
-  if (postsJSON.error) {
-    error = postsJSON.error.message;
-  } else {
-    categoryPosts = postsJSON.data.posts;
+  try {
+    const categoryPostsResponse = await request(Config.GraphqlURL, categoryPostsQuery);
+    categoryPosts = categoryPostsResponse.postsByCategory;
+    console.log(categoryPosts);
+  } catch (err) {
+    error = err.response.errors[0].message;
+    console.log(error);
   }
-
   return { error: error, categories: categories, mostReads: mostReads, pages: pages, posts: categoryPosts };
 };
 
