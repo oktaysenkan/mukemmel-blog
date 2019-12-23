@@ -70,10 +70,8 @@ Category.getInitialProps = async ({ req, res, query }) => {
   try {
     const categoryPostsResponse = await request(Config.GraphqlURL, categoryPostsQuery);
     categoryPosts = categoryPostsResponse.postsByCategory;
-    console.log(categoryPosts);
   } catch (err) {
     error = err.response.errors[0].message;
-    console.log(error);
   }
   return { error: error, categories: categories, mostReads: mostReads, pages: pages, posts: categoryPosts };
 };
