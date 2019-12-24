@@ -8,7 +8,7 @@ class MostReads extends Component {
       <div className='most-reads'>
         <h4>En çok okunanlar</h4>
         <ul>
-          {mostReads.map((post, i) => (
+          { mostReads && mostReads.map((post, i) => (
             <li key={i}>
               <a href={`${Config.BaseURL}/post/${post.slug}`}>{post.title}</a>
             </li>

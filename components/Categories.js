@@ -8,7 +8,7 @@ class Categories extends Component {
       <div className="categories">
         <h4>Kategoriler</h4>
         <ul>
-        {categories.map((category, i) => (
+        { categories && categories.map((category, i) => (
             <li key={i}>
               <a href={`${Config.BaseURL}/category/${category.slug}`}>{category.name}</a>
             </li>

@@ -27,7 +27,7 @@ class MobileMenu extends Component {
         <div className='mobile-menu' style={{visibility: mobileMenuVisibility}}>
           <nav>
             <ul>
-              { pages.map((page, i) => {
+              { pages && pages.map((page, i) => {
                   return <li key={i}>
                       <a href={`${Config.BaseURL}/page/${page.slug}`}>{page.name}</a>
                     </li>
