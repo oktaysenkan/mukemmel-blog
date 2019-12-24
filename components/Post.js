@@ -45,7 +45,7 @@ class Post extends Component {
         </div>
         <div className="post-meta">
           <ul>
-            <li><span className="date">{post.creationAt}</span></li>
+            <li><span className="date">{new Date(parseInt(post.creationAt)).toLocaleString()}</span></li>
             <li className='sign'>|</li>
             <li>
               <a href="#">

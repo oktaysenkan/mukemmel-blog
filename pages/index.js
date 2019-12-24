@@ -31,7 +31,7 @@ const Home = ({ posts, categories, mostReads, pages }) => (
 Home.getInitialProps = async ({ req }) => {
   const { categories, mostReads, pages } = await FetchAll.getAll();
   const postsQuery = `{
-    posts {
+    posts(orderBy: { field: "creationAt", direction: "DESC" }) {
       slug
       author {
         fullName

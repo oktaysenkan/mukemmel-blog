@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import { Container } from 'reactstrap';
 import { Header, Footer, ContentWrapper } from '../../components';
 import FetchAll from '../../server/utils/FetchAll';
+import PostTitle from '../../components/PostTitle';
 
 class BlogPost extends Component {
   decodeMarkup(input) {
@@ -46,10 +47,10 @@ class BlogPost extends Component {
           <link href="https://fonts.googleapis.com/css?family=News+Cycle:400,700&display=swap" rel="stylesheet"></link>
           <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet"></link>
         </Head>
-
         <Container>
           <Header pages={pages}/>
           <ContentWrapper categories={categories} mostReads={mostReads}>
+            <PostTitle title={post.title}/>
             <ReactMarkdown className='markdown-body' source={this.decodeMarkup(post.details)} />
           </ContentWrapper>
           <Footer/>
@@ -58,7 +59,6 @@ class BlogPost extends Component {
     )
   }
 }
-
 
 BlogPost.getInitialProps = async ({ req, res, query }) => {
   const { categories, mostReads, pages } = await FetchAll.getAll();

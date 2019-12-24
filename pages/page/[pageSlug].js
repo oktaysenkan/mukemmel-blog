@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import { Container } from 'reactstrap';
 import { Header, Footer, ContentWrapper } from '../../components';
 import FetchAll from '../../server/utils/FetchAll';
+import PostTitle from '../../components/PostTitle';
 
 class Page extends Component {
   decodeMarkup(input) {
@@ -50,6 +51,7 @@ class Page extends Component {
         <Container>
           <Header pages={pages}/>
           <ContentWrapper categories={categories} mostReads={mostReads}>
+            <PostTitle title={page.name}/>
             <ReactMarkdown className='markdown-body' source={this.decodeMarkup(page.content)} />
           </ContentWrapper>
           <Footer/>
