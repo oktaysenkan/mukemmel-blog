@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown';
 import Config from '../server/configs/config';
+const moment = require('moment');
 
 class Post extends Component {
   decodeMarkup(input) {
@@ -45,7 +46,7 @@ class Post extends Component {
         </div>
         <div className="post-meta">
           <ul>
-            <li><span className="date">{new Date(parseInt(post.creationAt)).toLocaleString()}</span></li>
+            <li><span className="date">{moment(parseInt(post.creationAt)).fromNow()}</span></li>
             <li className='sign'>|</li>
             <li>
               <a href="#">
