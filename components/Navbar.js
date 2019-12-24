@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MobileMenu from './MobileMenu'
 import SocialMediaIcons from './SocialMediaIcons'
+import MobileHeading from './MobileHeading';
 
 class Navbar extends Component {
   render() {
@@ -8,6 +9,7 @@ class Navbar extends Component {
     return (
       <div className='navbar-wrapper'>
         <MobileMenu pages={pages}/>
+        <MobileHeading/>
         <SocialMediaIcons/>
       </div>
     )

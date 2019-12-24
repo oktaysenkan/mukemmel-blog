@@ -46,6 +46,18 @@ ul {
   display: flex;
 }
 
+.mobile-heading {
+  flex: 1;
+  padding-left: 16px;
+  text-align: left;
+}
+
+.mobile-heading h3 {
+  font-family: 'Heading Pro', sans-serif;
+  font-size: 24px;
+  line-height: 28px;
+}
+
 .mobile-menu-icon {
   display: flex;
   justify-content: flex-end;
