@@ -20,45 +20,44 @@ class Post extends Component {
   }
 
   render() {
-    const { data } = this.props;
-
+    const { post } = this.props;
     return (
       <div className='post'>
-        <a href={`${Config.BaseURL}/post/${data.slug}`}>
-          <div className='image' style={{ backgroundImage: `url(${data.image})` }}></div>
+        <a href={`${Config.BaseURL}/post/${post.slug}`}>
+          <div className='image' style={{ backgroundImage: `url(${post.image})` }}></div>
         </a>
         <div className='categories'>
           {
-            data.categories.map((item, i) => {
+            post.categories.map((item, i) => {
               let result = <a href={`${Config.BaseURL}/category/${item.slug}`}>{item.name}</a>;
               let sign;
 
-              if (i !== data.categories.length - 1) {
+              if (i !== post.categories.length - 1) {
                 sign = <span className='sign'>|</span>
               }
               return [result, sign]
             })
           }
         </div>
-        <h3><a href={`${Config.BaseURL}/post/${data.slug}`}>{data.title}</a></h3>
+        <h3><a href={`${Config.BaseURL}/post/${post.slug}`}>{post.title}</a></h3>
         <div className="details">
-          {this.decodeMarkup(data.details)}
+          {this.decodeMarkup(post.details)}
         </div>
         <div className="post-meta">
           <ul>
-            <li><span className="date">{data.creationAt}</span></li>
+            <li><span className="date">{post.creationAt}</span></li>
             <li className='sign'>|</li>
             <li>
               <a href="#">
                 <span className="highlight">Views </span>
-                <span>({data.views})</span>
+                <span>({post.views})</span>
               </a>
             </li>
             <li className='sign'>|</li>
             <li>
               <a href="#">
                 <span className="highlight">Comments </span>
-                <span>({data.comments.length})</span>
+                <span>({post.comments.length})</span>
               </a>
             </li>
           </ul>
@@ -66,7 +65,7 @@ class Post extends Component {
             <li>
               <span>By&nbsp;</span>
               <a href="">
-                <span className="highlight">{ data.author.fullName }</span>
+                <span className="highlight">{ post.author.fullName }</span>
               </a>
               </li>
           </ul>

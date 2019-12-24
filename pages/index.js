@@ -45,6 +45,7 @@ Home.getInitialProps = async ({ req }) => {
       }
       categories {
         name
+        slug
       }
       creationAt
     }

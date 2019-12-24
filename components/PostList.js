@@ -10,7 +10,7 @@ class PostList extends Component {
       <Row className='post-list'>
         { posts.map((post, i) => {
           return <Col key={i} md={6}>
-              <Post data={post}/>
+              <Post post={post}/>
             </Col>
         })}
       </Row>
