@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from './Navbar'
 import Menu from './Menu';
-import Heading from './Logo';
+import Heading from './Heading';
 
 class Header extends Component {
   render() {
