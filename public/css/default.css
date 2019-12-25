@@ -301,3 +301,58 @@ ul {
   letter-spacing: 0.8em;
   text-transform: uppercase;
 }
+
+.leave-comment {
+  margin: 20px 0px;
+  padding-top: 24px;
+  border-top: 1.5px solid rgba(0, 0, 0, 0.13);
+  width: 100%;
+}
+
+.leave-comment h6,
+.leave-comment h3,
+.leave-comment .send-comment {
+  font-family: 'News Cycle', sans-serif;
+  font-weight: 600;
+  color: #3d3d3d;
+}
+
+.leave-comment h6{
+  padding-bottom: 4px;
+}
+
+.leave-comment input,
+.leave-comment textarea {
+  width: 100%;
+  background-color: #f7f7f7;
+  border: 1px solid #c7c7c7;
+  border-radius: 2px;
+}
+
+.leave-comment input{
+  height: 38px;
+}
+
+.leave-comment .comment{
+  padding-top: 20px;
+}
+
+.leave-comment .name{
+  padding-top: 20px;
+}
+
+.leave-comment .email{
+  padding-top: 20px;
+}
+
+.leave-comment .website{
+  padding-top: 20px;
+}
+
+.leave-comment .send-comment{
+  margin-top: 20px;
+  padding: 10px 30px;
+  background: #151515;
+  border: none;
+  color: #f7f7f7;
+}

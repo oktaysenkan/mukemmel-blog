@@ -9,6 +9,7 @@ import { Container } from 'reactstrap';
 import { Header, Footer, ContentWrapper } from '../../components';
 import FetchAll from '../../server/utils/FetchAll';
 import PostTitle from '../../components/PostTitle';
+import LeaveComment from '../../components/LeaveComment';
 
 class BlogPost extends Component {
   decodeMarkup(input) {
@@ -54,6 +55,7 @@ class BlogPost extends Component {
           <ContentWrapper categories={categories} mostReads={mostReads}>
             <PostTitle title={post.title}/>
             <ReactMarkdown className='markdown-body' escapeHtml={false} source={this.decodeMarkup(post.details)} />
+            <LeaveComment/>
           </ContentWrapper>
           <Footer/>
         </Container>
