@@ -9,7 +9,7 @@ export default class Comment extends Component {
             <h6>NAME</h6>
             <input type="text"></input>
           </div>
-          <div className='comment'>
+          <div className='comment-content'>
             <h6>COMMENT</h6>
             <textarea rows={6}></textarea>
           </div>
