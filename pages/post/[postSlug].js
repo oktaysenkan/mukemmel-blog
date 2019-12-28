@@ -11,6 +11,7 @@ import FetchAll from '../../server/utils/FetchAll';
 import PostTitle from '../../components/PostTitle';
 import LeaveComment from '../../components/LeaveComment';
 import Comment from '../../components/Comment';
+import CommentList from '../../components/CommentList';
 
 class BlogPost extends Component {
   decodeMarkup(input) {
@@ -57,11 +58,7 @@ class BlogPost extends Component {
             <PostTitle title={post.title}/>
             <ReactMarkdown className='markdown-body' escapeHtml={false} source={this.decodeMarkup(post.details)} />
             <LeaveComment/>
-            <Comment 
-              name='Naber'
-              creationDate='2019.01.01'
-              content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in facilisis arcu. Sed vehicula enim enim. Ut pharetra dictum augue. Aliquam nec velit justo. Mauris ac efficitur nulla, quis rhoncus elit. Nam eros ipsum, tempor vel dapibus ac, tincidunt in elit. Mauris pretium ac leo id imperdiet. Aliquam bibendum nulla at magna molestie luctus. Curabitur venenatis cursus rutrum. Vivamus condimentum suscipit tortor tempor fringilla.'
-            />
+            <CommentList comments={post.comments}/>
           </ContentWrapper>
           <Footer/>
         </Container>
@@ -86,10 +83,8 @@ BlogPost.getInitialProps = async ({ req, res, query }) => {
       comments {
         _id
         name
-        email
         content
-        website
-        website
+        creationAt
       }
       categories {
         name
