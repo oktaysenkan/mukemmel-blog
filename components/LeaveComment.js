@@ -59,7 +59,6 @@ export default class Comment extends Component {
   }
 
   render() {
-    const { postId } = this.props;
     return (
       <div className='leave-comment'>
           <h3>Leave a comment</h3>
