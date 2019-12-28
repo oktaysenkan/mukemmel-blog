@@ -10,7 +10,6 @@ import { Header, Footer, ContentWrapper } from '../../components';
 import FetchAll from '../../server/utils/FetchAll';
 import PostTitle from '../../components/PostTitle';
 import LeaveComment from '../../components/LeaveComment';
-import Comment from '../../components/Comment';
 import CommentList from '../../components/CommentList';
 
 class BlogPost extends Component {
@@ -57,7 +56,7 @@ class BlogPost extends Component {
           <ContentWrapper categories={categories} mostReads={mostReads}>
             <PostTitle title={post.title}/>
             <ReactMarkdown className='markdown-body' escapeHtml={false} source={this.decodeMarkup(post.details)} />
-            <LeaveComment/>
+            <LeaveComment postId={post._id}/>
             <CommentList comments={post.comments}/>
           </ContentWrapper>
           <Footer/>
@@ -72,6 +71,7 @@ BlogPost.getInitialProps = async ({ req, res, query }) => {
   const slug = query.postSlug;
   const postsQuery = `{
     postBySlug(slug: "${slug}") {
+      _id
       slug
       author {
         fullName
