@@ -51,7 +51,7 @@ export default class Comment extends Component {
 
       try {
         const data = await request(Config.GraphqlURL, query, variables)
-        console.log(data);
+        window.location.reload();
       } catch (error) {
         console.log(error);
       }
